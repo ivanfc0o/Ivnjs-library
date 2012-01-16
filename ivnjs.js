@@ -50,18 +50,6 @@
       return this.fly(id).style['display'] = "block";
     },
     ui: {
-      /*
-      		| -- Search List
-      		| -- Search content of <ul> using an input
-      		| -- required: {toSearch: "List_ID", input: "input_ID", type: "list"}
-      		| -- Example at: ivanfc0o.co.cc/ivnjs/examples/searchList.html
-      		| -- usage: 
-      		            var setting = {toSearch: "ul_id",input: "input_id", type: "list"}
-      					var element = new I.ui.searchList(setting);
-      		| -- Extra:
-      					element.disable();
-      					element.enable();
-      */
       searchList: (function() {
 
         function _Class(obj) {
