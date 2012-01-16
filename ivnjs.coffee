@@ -3,15 +3,11 @@
 # ---------------------------------------- |
 # pack
 ivnjs = ivnjs||{}
-# ----|
-# ----|	SHORTCUTS
-# ----|
 I =	
 	fly: (id) -> ivnjs.library.fly(id)
 	hide: (id) -> ivnjs.library.hide(id)
 	show: (id) -> ivnjs.library.show(id)
 	on: (m,fn) -> ivnjs.library.on(m,fn)
-# library content:
 ivnjs.library =
 	on: (method, fn) ->
 		switch method
@@ -28,18 +24,6 @@ ivnjs.library =
 	hide: (id) -> @fly(id).style['display'] = "none"
 	show: (id) -> @fly(id).style['display'] = "block"
 	ui:
-		###
-		| -- Search List
-		| -- Search content of <ul> using an input
-		| -- required: {toSearch: "List_ID", input: "input_ID", type: "list"}
-		| -- Example at: ivanfc0o.co.cc/ivnjs/examples/searchList.html
-		| -- usage: 
-		            var setting = {toSearch: "ul_id",input: "input_id", type: "list"}
-					var element = new ivnjs.library.ui.searchList(setting);
-		| -- Extra:
-					element.disable();
-					element.enable();
-		###
 		searchList: class
 			constructor: (obj) ->
 				root_me = this;
