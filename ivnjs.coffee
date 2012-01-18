@@ -9,8 +9,8 @@ I =
 	show: (id) -> ivnjs.library.show(id)
 	on: (m,fn) -> ivnjs.library.on(m,fn)
 ivnjs.library =
-	on: (method, fn) ->
-		switch method
+	on: (event, fn) ->
+		switch event
 			when "ready" then window.onload = fn
 			else false
 	fly: (id) -> document.getElementById(id)
