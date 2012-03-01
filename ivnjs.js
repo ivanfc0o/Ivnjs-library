@@ -1,114 +1,67 @@
-(function() {
-  var I, ivnjs;
-
-  ivnjs = ivnjs || {};
-
-  I = {
-    fly: function(id) {
-      return ivnjs.library.fly(id);
-    },
-    hide: function(id) {
-      return ivnjs.library.hide(id);
-    },
-    show: function(id) {
-      return ivnjs.library.show(id);
-    },
-    ui: ivnjs.library.ui,
-    on: function(m, fn) {
-      return ivnjs.library.on(m, fn);
-    }
-  };
-
-  ivnjs.library = {
-    on: function(method, fn) {
-      switch (method) {
-        case "ready":
-          return window.onload = fn;
-        default:
-          return false;
+((function () {
+   var a, b;
+   b = b || {}, a = {
+      fly: function (a) {
+         return b.library.fly(a)
+      },
+      hide: function (a) {
+         return b.library.hide(a)
+      },
+      show: function (a) {
+         return b.library.show(a)
+      },
+      ui: b.library.ui,
+      on: function (a, c) {
+         return b.library.on(a, c)
       }
-    },
-    fly: function(id) {
-      return document.getElementById(id);
-    },
-    getRandomId: function(num, _prefix) {
-      var chars, i;
-      if (num == null) num = 6;
-      if (_prefix == null) _prefix = "id";
-      chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      i = 0;
-      while (i < num) {
-        id += chars.charAt(Math.floor(Math.random() * chars.length));
-        i++;
-        return _prefix + id;
-      }
-    },
-    hide: function(id) {
-      return this.fly(id).style['display'] = "none";
-    },
-    show: function(id) {
-      return this.fly(id).style['display'] = "block";
-    },
-    ui: {
-      searchList: (function() {
-
-        function _Class(obj) {
-          var root_me, s, searchInterval;
-          root_me = this;
-          s = this.s = {};
-          s.input_default = obj.input || "ui-search";
-          s.ts = obj.toSearch;
-          s.text_input_default = obj.InputText || "Buscar..";
-          s.input = document.getElementById(s.input_default);
-          s.input.value = s.text_input_default;
-          s.input.onfocus = function() {
-            if (this.value === s.text_input_default) return this.value = "";
-          };
-          s.input.onblur = function() {
-            if (this.value === "") return this.value = s.text_input_default;
-          };
-          if (obj.type === "list") {
-            s.getObjects = document.getElementById(s.ts);
-            s.li_array = s.getObjects.getElementsByTagName("li");
-            searchInterval = setInterval(function(){ root_me.search(root_me); },500);
-          }
-        }
-
-        _Class.prototype.search = function() {
-          var chain, i, word, _i, _len, _ref, _results;
-          word = this.s.input.value;
-          if (word === this.s.text_input_default || this.s.input.disabled) {
-            return false;
-          }
-          word = new RegExp(word, "gi");
-          _ref = this.s.li_array;
-          _results = [];
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            i = _ref[_i];
-            chain = i.innerHTML;
-            if (word.test(chain)) {
-              _results.push(i.style['display'] = "block");
-            } else {
-              _results.push(i.style['display'] = "none");
+   }, b.library = {
+      on: function (a, b) {
+         switch(a) {
+         case "ready":
+            return window.onload = b;
+         default:
+            return !1
+         }
+      },
+      fly: function (a) {
+         return document.getElementById(a)
+      },
+      getRandomId: function (a, b) {
+         var c, d;
+         a == null && (a = 6), b == null && (b = "id"), c = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", d = 0;
+         while(d < a) return id += c.charAt(Math.floor(Math.random() * c.length)), d++, b + id
+      },
+      hide: function (a) {
+         return this.fly(a).style.display = "none"
+      },
+      show: function (a) {
+         return this.fly(a).style.display = "block"
+      },
+      ui: {
+         searchList: function () {
+            function a(a) {
+               var b, c, d;
+               b = this, c = this.s = {}, c.input_default = a.input || "ui-search", c.ts = a.toSearch, c.text_input_default = a.InputText || "Buscar..", c.input = document.getElementById(c.input_default), c.input.value = c.text_input_default, c.input.onfocus = function () {
+                  if(this.value === c.text_input_default) return this.value = ""
+               }, c.input.onblur = function () {
+                  if(this.value === "") return this.value = c.text_input_default
+               }, a.type === "list" && (c.getObjects = document.getElementById(c.ts), c.li_array = c.getObjects.getElementsByTagName("li"), d = setInterval(function () {
+                  b.search(b)
+               }, 500))
             }
-          }
-          return _results;
-        };
-
-        _Class.prototype.disable = function() {
-          this.s.input.disabled = true;
-          return this.s.input.value = "Deshabilidado";
-        };
-
-        _Class.prototype.enable = function() {
-          this.s.input.disabled = false;
-          return this.s.input.value = this.s.text_input_default;
-        };
-
-        return _Class;
-
-      })()
-    }
-  };
-
-}).call(this);
+            return a.prototype.search = function () {
+               var a, b, c, d, e, f, g;
+               c = this.s.input.value;
+               if(c === this.s.text_input_default || this.s.input.disabled) return !1;
+               c = new RegExp(c, "gi"), f = this.s.li_array, g = [];
+               for(d = 0, e = f.length; d < e; d++) b = f[d], a = b.innerHTML, c.test(a) ? g.push(b.style.display = "block") : g.push(b.style.display = "none");
+               return g
+            }, a.prototype.disable = function () {
+               return this.s.input.disabled = !0, this.s.input.value = "Deshabilidado"
+            }, a.prototype.enable = function () {
+               return this.s.input.disabled = !1, this.s.input.value = this.s.text_input_default
+            }, a
+         }()
+      }
+   }
+})).call(this);
